@@ -1,0 +1,95 @@
+server_id = "mcp_storage"
+display_name = "Storage"
+version = "1.0.0"
+domain = "storage"
+sdk_version = "0.1.0"
+risk_level = "medium"
+writes_allowed = "gated"
+transports = ["stdio"]
+credentials = ["vault://storage-access-key", "vault://storage-secret-key"]
+governance_gates = []
+environments = ["development", "staging", "production"]
+
+[[tools]]
+name = "list_buckets"
+description = "List all buckets/containers"
+risk_class = "read_only"
+requires_approval = false
+credential_bindings = ["vault://storage-access-key"]
+
+[[tools]]
+name = "list_objects"
+description = "List objects in a bucket with optional prefix filter"
+risk_class = "read_only"
+requires_approval = false
+credential_bindings = ["vault://storage-access-key"]
+
+[[tools]]
+name = "get_object_info"
+description = "Get object metadata"
+risk_class = "read_only"
+requires_approval = false
+credential_bindings = ["vault://storage-access-key"]
+
+[[tools]]
+name = "download_object"
+description = "Download object content"
+risk_class = "read_only"
+requires_approval = false
+credential_bindings = ["vault://storage-access-key"]
+
+[[tools]]
+name = "generate_presigned_url"
+description = "Generate temporary access URL"
+risk_class = "read_only"
+requires_approval = false
+credential_bindings = ["vault://storage-access-key"]
+
+[[tools]]
+name = "upload_object"
+description = "Upload content to an object path"
+risk_class = "internal_write"
+requires_approval = false
+credential_bindings = ["vault://storage-access-key"]
+
+[[tools]]
+name = "copy_object"
+description = "Copy object within/between buckets"
+risk_class = "internal_write"
+requires_approval = false
+credential_bindings = ["vault://storage-access-key"]
+
+[[tools]]
+name = "move_object"
+description = "Move object (copy + delete source)"
+risk_class = "internal_write"
+requires_approval = true
+credential_bindings = ["vault://storage-access-key"]
+
+[[tools]]
+name = "delete_object"
+description = "Delete a single object"
+risk_class = "internal_write"
+requires_approval = true
+credential_bindings = ["vault://storage-access-key"]
+
+[[tools]]
+name = "create_bucket"
+description = "Create a new bucket"
+risk_class = "internal_write"
+requires_approval = true
+credential_bindings = ["vault://storage-access-key"]
+
+[[tools]]
+name = "search_objects"
+description = "Search objects by prefix pattern"
+risk_class = "read_only"
+requires_approval = false
+credential_bindings = ["vault://storage-access-key"]
+
+[[tools]]
+name = "get_storage_usage"
+description = "Get storage usage summary for a bucket"
+risk_class = "read_only"
+requires_approval = false
+credential_bindings = ["vault://storage-access-key"]

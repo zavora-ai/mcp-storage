@@ -1,0 +1,24 @@
+[workspace]
+
+[package]
+name = "mcp-storage"
+version = "1.0.0"
+edition = "2024"
+description = "Universal cloud storage MCP server — S3, R2, MinIO, GCS, Azure Blob. List, upload, download, search, manage buckets and objects"
+license = "Apache-2.0"
+repository = "https://github.com/zavora-ai/mcp-storage"
+keywords = ["mcp", "storage", "s3", "cloud", "object-storage"]
+categories = ["api-bindings", "filesystem"]
+
+[dependencies]
+adk-mcp-sdk = "0.1"
+rmcp = { version = "1.7", features = ["server", "transport-io", "macros"] }
+tokio = { version = "1", features = ["full"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+anyhow = "1"
+aws-config = "1"
+aws-sdk-s3 = "1"
+aws-credential-types = "1"
+aws-types = "1"
+base64 = "0.22"
