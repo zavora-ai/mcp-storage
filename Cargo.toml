@@ -2,7 +2,7 @@
 
 [package]
 name = "mcp-storage"
-version = "1.0.0"
+version = "1.0.1"
 edition = "2024"
 description = "Universal cloud storage MCP server — S3, R2, MinIO, GCS, Azure Blob. List, upload, download, search, manage buckets and objects"
 license = "Apache-2.0"

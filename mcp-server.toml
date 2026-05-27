@@ -1,6 +1,6 @@
 server_id = "mcp_storage"
 display_name = "Storage"
-version = "1.0.0"
+version = "1.0.1"
 domain = "storage"
 sdk_version = "0.1.0"
 risk_level = "medium"
