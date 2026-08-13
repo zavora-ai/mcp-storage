@@ -2,17 +2,17 @@ server_id = "mcp_storage"
 display_name = "Storage"
 version = "1.0.1"
 domain = "storage"
-sdk_version = "0.1.0"
+sdk_version = "0.2.0"
 risk_level = "medium"
 writes_allowed = "gated"
 transports = ["stdio"]
 credentials = ["vault://storage-access-key", "vault://storage-secret-key"]
-governance_gates = []
+governance_gates = ["mrtr_approval"]
 environments = ["development", "staging", "production"]
 
 [[tools]]
 name = "list_buckets"
-description = "List all buckets/containers"
+description = "List all buckets/containers in the storage account"
 risk_class = "read_only"
 requires_approval = false
 credential_bindings = ["vault://storage-access-key"]
@@ -26,42 +26,42 @@ credential_bindings = ["vault://storage-access-key"]
 
 [[tools]]
 name = "get_object_info"
-description = "Get object metadata"
+description = "Get object metadata (size, content type, last modified, etag)"
 risk_class = "read_only"
 requires_approval = false
 credential_bindings = ["vault://storage-access-key"]
 
 [[tools]]
 name = "download_object"
-description = "Download object content"
+description = "Download object content. Returns text inline or base64 for binary"
 risk_class = "read_only"
 requires_approval = false
 credential_bindings = ["vault://storage-access-key"]
 
 [[tools]]
 name = "generate_presigned_url"
-description = "Generate temporary access URL"
+description = "Generate a presigned URL for temporary access (download or upload)"
 risk_class = "read_only"
 requires_approval = false
 credential_bindings = ["vault://storage-access-key"]
 
 [[tools]]
 name = "upload_object"
-description = "Upload content to an object path"
+description = "Upload text content to an object path"
 risk_class = "internal_write"
 requires_approval = false
 credential_bindings = ["vault://storage-access-key"]
 
 [[tools]]
 name = "copy_object"
-description = "Copy object within/between buckets"
+description = "Copy an object within or between buckets"
 risk_class = "internal_write"
 requires_approval = false
 credential_bindings = ["vault://storage-access-key"]
 
 [[tools]]
 name = "move_object"
-description = "Move object (copy + delete source)"
+description = "Move an object (copy then delete source)"
 risk_class = "internal_write"
 requires_approval = true
 credential_bindings = ["vault://storage-access-key"]
@@ -82,14 +82,14 @@ credential_bindings = ["vault://storage-access-key"]
 
 [[tools]]
 name = "search_objects"
-description = "Search objects by prefix pattern"
+description = "Search objects by prefix pattern in a bucket"
 risk_class = "read_only"
 requires_approval = false
 credential_bindings = ["vault://storage-access-key"]
 
 [[tools]]
 name = "get_storage_usage"
-description = "Get storage usage summary for a bucket"
+description = "Get storage usage summary for a bucket (total size, object count)"
 risk_class = "read_only"
 requires_approval = false
 credential_bindings = ["vault://storage-access-key"]

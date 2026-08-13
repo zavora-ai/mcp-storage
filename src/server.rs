@@ -86,7 +86,7 @@ pub struct StorageServer {
     pub client: Client,
 }
 
-#[tool_router(server_handler)]
+#[tool_router]
 impl StorageServer {
     #[tool(description = "List all buckets/containers in the storage account")]
     async fn list_buckets(&self, Parameters(_input): Parameters<EmptyInput>) -> String {
@@ -307,4 +307,11 @@ impl StorageServer {
             "total_size_mb": total_size as f64 / 1_048_576.0
         }).to_string()
     }
+}
+
+adk_mcp_sdk::mcp_2026_server! {
+    server: StorageServer,
+    task_tools: ["download_object", "generate_presigned_url", "upload_object"],
+    approval_tools: ["move_object", "delete_object", "create_bucket"],
+    cache_ttl_ms: 60_000,
 }
