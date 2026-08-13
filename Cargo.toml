@@ -2,7 +2,7 @@
 
 [package]
 name = "mcp-storage"
-version = "1.0.1"
+version = "1.1.0"
 edition = "2024"
 rust-version = "1.94.1"
 description = "Universal cloud storage MCP server — S3, R2, MinIO, GCS, Azure Blob. List, upload, download, search, manage buckets and objects"
